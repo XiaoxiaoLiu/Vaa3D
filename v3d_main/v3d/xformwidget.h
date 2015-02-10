@@ -401,7 +401,9 @@ public:    // in mainwindow_interface.cpp
 
 	void finishEditingSWC();
 
-	void open3DWindow();
+    void openNew3DViewer(QString filename, QList<NeuronTree > neruonTrees );
+
+    void open3DWindow();
 	void openROI3DWindow();
 	void close3DWindow();
 	void closeROI3DWindow();

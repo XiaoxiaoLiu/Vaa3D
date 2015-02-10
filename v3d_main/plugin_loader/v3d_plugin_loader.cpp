@@ -1129,6 +1129,23 @@ QStringList V3d_PluginLoader::getPluginNameList()
 	if (v3d_mainwindow && (w = v3d_mainwindow->validateImageWindow(image_window)))
 
 
+void V3d_PluginLoader::openNew3DViewer(QString filename, QList<NeuronTree > neuronTrees){
+
+    XFormWidget* w=0;
+
+    if (this->v3d_mainwindow)
+    {
+        w =this->v3d_mainwindow->newImageWindow(filename);
+        if (w){
+            w->openNew3DViewer(filename, neuronTrees);
+            qDebug()<<"in plugin loader :openNew3DViewer(): after";
+        }
+    }
+    else{
+        qDebug()<< "v3d_mainwindow is empty";
+    }
+}
+
 void V3d_PluginLoader::open3DWindow(v3dhandle image_window)
 {
 	if_XFormWidget(w, image_window)

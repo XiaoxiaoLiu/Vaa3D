@@ -130,7 +130,8 @@ public:
 	virtual bool setGlobalSetting( V3D_GlobalSetting & gs ) = 0;
 
 // 1.1 functions
-	virtual void open3DWindow(v3dhandle image_window) = 0;
+    virtual void openNew3DViewer( QString filename, QList<NeuronTree> neuronTrees) = 0;
+    virtual void open3DWindow(v3dhandle image_window) = 0;
 	virtual void close3DWindow(v3dhandle image_window) = 0;
 	virtual void openROI3DWindow(v3dhandle image_window) = 0;
 	virtual void closeROI3DWindow(v3dhandle image_window) = 0;

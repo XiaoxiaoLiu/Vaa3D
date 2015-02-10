@@ -308,6 +308,40 @@ bool XFormWidget::transferImageData(Image4DSimple *img, unsigned char *a) // FIX
 	else return false;
 }
 
+
+void XFormWidget:: openNew3DViewer(QString filename, QList<NeuronTree> neuronTreeList){
+
+    iDrawExternalParameter * new_3Dview = new iDrawExternalParameter;
+    new_3Dview->p_list_3Dview_win =  &(this->getMainControlWindow()->list_3Dview_win); //always keep an record
+    new_3Dview->image4d = 0;
+    new_3Dview->b_use_512x512x256 = true;
+    new_3Dview->xwidget = 0;
+    new_3Dview->V3Dmainwindow = this->getMainControlWindow();
+
+    //new_3Dview->swc_file_list.append(fileName);
+    //new_3Dview->surface_file = fileName;
+
+    V3dR_MainWindow *my3dwin = 0;
+    try
+    {
+        my3dwin = new V3dR_MainWindow(new_3Dview);
+        my3dwin->setParent(0);
+        my3dwin->setDataTitle(filename);
+
+        Renderer_gl1* r= (Renderer_gl1*)(my3dwin->getGLWidget()->getRenderer());
+        r->listNeuronTree = neuronTreeList;
+
+        my3dwin->show();
+        new_3Dview->window3D = my3dwin;
+    }
+    catch (...)
+    {
+        v3d_msg("You fail to open a 3D view window. You may have opened too many stacks (if so please close some first) or try to render a too-big 3D view (if so please contact Hanchuan Peng for a 64-bit version of Vaa3D).");
+        return;
+    }
+
+}
+
 void XFormWidget::open3DWindow()
 {
 	doImage3DView();
@@ -320,7 +354,7 @@ void XFormWidget::close3DWindow()
 {
 	if (mypara_3Dview.b_still_open && mypara_3Dview.window3D)
 	{
-		mypara_3Dview.window3D->postClose();
+        mypara_3Dview.window3D->postClose();
 	}
 }
 void XFormWidget::closeROI3DWindow()
