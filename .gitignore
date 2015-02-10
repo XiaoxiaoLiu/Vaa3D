@@ -26,3 +26,9 @@
 *.exe
 *.out
 *.app
+
+# SVN files
+.svn*
+
+# Mac
+.DS_Store

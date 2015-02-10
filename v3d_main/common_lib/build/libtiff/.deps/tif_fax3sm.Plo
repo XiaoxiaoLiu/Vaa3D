@@ -1,0 +1,9 @@
+tif_fax3sm.lo: ../../src_packages/tiff-4.0.2/libtiff/tif_fax3sm.c \
+  ../../src_packages/tiff-4.0.2/libtiff/tiff.h tiffconf.h \
+  ../../src_packages/tiff-4.0.2/libtiff/tif_fax3.h
+
+../../src_packages/tiff-4.0.2/libtiff/tiff.h:
+
+tiffconf.h:
+
+../../src_packages/tiff-4.0.2/libtiff/tif_fax3.h:
